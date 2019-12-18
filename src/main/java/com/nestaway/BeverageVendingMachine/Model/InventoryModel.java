@@ -1,6 +1,8 @@
 package com.nestaway.BeverageVendingMachine.Model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -8,6 +10,8 @@ import javax.persistence.*;
 @Entity
 @Data
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="inventory", schema = "bvm")
 public class InventoryModel {
 
@@ -21,4 +25,7 @@ public class InventoryModel {
 
     @Column(name="total_quantity")
     private int total_quantity;
+
+    @OneToOne
+    private IngredientsModel ingredientsModel;
 }

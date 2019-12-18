@@ -1,13 +1,18 @@
 package com.nestaway.BeverageVendingMachine.Model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="beverage", schema="bvm")
 public class BeverageModel {
     @Id
@@ -20,4 +25,7 @@ public class BeverageModel {
 
     @Column(name="status")
     private boolean status;
+
+    @OneToMany
+    private List<IngredientsModel> ingredientsModel;
 }
