@@ -5,7 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IngredientsRepo extends JpaRepository<IngredientsModel, Integer> {
-
-    public IngredientsModel findByB_id(int id);
+public interface IngredientsRepo extends JpaRepository<IngredientsModel, Long> {
 }

@@ -18,14 +18,12 @@ public class InventoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="i_id")
-    private int i_id;
+    private Long iId;
 
     @Column(name="i_name")
-    private String i_name;
+    private String iName;
 
     @Column(name="total_quantity")
-    private int total_quantity;
+    private Integer totalQuantity;
 
-    @OneToOne
-    private IngredientsModel ingredientsModel;
 }

@@ -3,9 +3,12 @@ package com.nestaway.BeverageVendingMachine.Controller;
 import com.nestaway.BeverageVendingMachine.Model.IngredientsModel;
 import com.nestaway.BeverageVendingMachine.Service.IngredientsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -15,45 +18,76 @@ public class IngredientsCont {
     @Autowired
     private IngredientsService ingredientsService;
 
-    @PostMapping(path="/add", consumes = "application/json")
-    public IngredientsModel addIngredients(@RequestBody IngredientsModel ingredients) throws Exception{
-        if(ingredients == null){
-            throw new Exception("No Ingredients Received");
+    @PostMapping(path="/add")
+    public ResponseEntity addIngredients(@RequestBody IngredientsModel ingredients){
+        try {
+            IngredientsModel ingredients1 = ingredientsService.addIngredients(ingredients);
+            return correctResponse(ingredients1, HttpStatus.OK, HttpStatus.OK.value(),"Success",HttpStatus.OK);
         }
-        return ingredientsService.addIngredients(ingredients);
+        catch (Exception ex) {
+            return errorResponse(ex);
+        }
     }
 
-    @PostMapping(path="/update", consumes = "application/json")
-    public IngredientsModel updateIngredients(@RequestBody IngredientsModel ingredients) throws Exception{
-        if(ingredients == null){
-            throw new Exception("No Ingredients Received");
+    @PutMapping(path="/update")
+    public ResponseEntity updateIngredients(@RequestBody IngredientsModel ingredients){
+        try {
+            IngredientsModel ingredients1 = ingredientsService.updateIngredients(ingredients);
+            return correctResponse(ingredients1, HttpStatus.OK, HttpStatus.OK.value(),"Success",HttpStatus.OK);
         }
-        return ingredientsService.updateIngredients(ingredients);
+        catch (Exception ex) {
+            return errorResponse(ex);
+        }
     }
 
-    @DeleteMapping(path="/add", consumes = "application/json")
-    public void deleteIngredients(@RequestBody IngredientsModel ingredients) throws Exception{
-        if(ingredients == null){
-            throw new Exception("No Ingredients Received");
+    @DeleteMapping(path="/delete/{param}")
+    public ResponseEntity deleteIngredients(@PathVariable Long param) {
+        try {
+            boolean output = ingredientsService.deleteIngredients(param);
+            return correctResponse(output, HttpStatus.OK, HttpStatus.OK.value(),"Success",HttpStatus.OK);
         }
-        ingredientsService.deleteIngredients(ingredients);
+        catch (Exception ex) {
+            return errorResponse(ex);
+        }
     }
 
-    @PostMapping(path="/findall", produces="application/json")
-    public List<IngredientsModel> showAll() throws Exception{
-        List<IngredientsModel> listofIngredient = ingredientsService.showAll();
-        if(listofIngredient == null){
-            throw new Exception("No Ingredients Found");
+    @GetMapping(path="/findall")
+    public ResponseEntity showAll(){
+        try {
+            List<IngredientsModel> ingredientsList = ingredientsService.showAll();
+            return correctResponse(ingredientsList, HttpStatus.OK, HttpStatus.OK.value(),"Success",HttpStatus.OK);
         }
-        return listofIngredient;
+        catch (Exception ex) {
+            return errorResponse(ex);
+        }
     }
 
-    @PostMapping(path = "find/{id}", produces = "application/json")
-    public ResponseEntity findByBid(@RequestBody int id) throws Exception{
-        IngredientsModel ingredients = ingredientsService.findByBId(id);
-        if(ingredients == null){
-            throw new Exception("No Ingredients Found For Given Beverage");
+    @GetMapping(path = "find/{id}")
+    public ResponseEntity findById(@PathVariable Long id) {
+        try {
+            IngredientsModel ingredients = ingredientsService.findById(id);
+            return correctResponse(ingredients, HttpStatus.OK, HttpStatus.OK.value(),"Success",HttpStatus.OK);
         }
-        return ResponseEntity.ok(ingredients);
+        catch (Exception ex) {
+            return errorResponse(ex);
+        }
+    }
+
+    public ResponseEntity correctResponse(Object value, Object error, int statusCode, String message, HttpStatus status) {
+        HashMap<Object, Object> response = new HashMap<>();
+        response.put("value", value);
+        response.put("error", error);
+        response.put("status", statusCode);
+        response.put("message", message);
+        return ResponseEntity.status(status).body(response);
+    }
+
+    public ResponseEntity errorResponse(Exception ex) {
+        HashMap<Object, Object> response = new HashMap<>();
+        response.put("timestamp", new Date());
+        response.put("error", HttpStatus.INTERNAL_SERVER_ERROR);
+        response.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+        response.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 }

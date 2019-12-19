@@ -1,5 +1,6 @@
 package com.nestaway.BeverageVendingMachine.Model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,14 +19,15 @@ public class BeverageModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="b_id")
-    private int b_id;
+    private Long bId;
 
     @Column(name="b_name")
-    private String b_name;
+    private String bName;
 
     @Column(name="status")
     private boolean status;
 
-    @OneToMany
+    @OneToMany(mappedBy = "beverage")
+    @JsonManagedReference
     private List<IngredientsModel> ingredientsModel;
 }

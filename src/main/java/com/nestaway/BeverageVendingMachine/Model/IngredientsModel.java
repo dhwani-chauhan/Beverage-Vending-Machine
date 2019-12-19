@@ -1,5 +1,6 @@
 package com.nestaway.BeverageVendingMachine.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,21 +19,16 @@ public class IngredientsModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="in_id")
-    private int in_id;
-
-    @Column(name="b_id")
-    private  int b_id;
-
-    @Column(name="i_id")
-    private int i_id;
+    private Long inId;
 
     @Column(name="quantity_required")
-    private int quantity_required;
+    private Integer quantityRequired;
 
     @ManyToOne
+    @JsonBackReference
     private BeverageModel beverageModel;
 
-    @OneToOne
+    @ManyToOne
     private InventoryModel inventoryModel;
 
 }
