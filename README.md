@@ -73,23 +73,23 @@ Alternatively you can use the Spring Boot Maven plugin like so:
 ### Beverage
 | Name | URL | Method | Purpose | Parameter | Result |
 |---|---|---|---|---|---|
-| Add Beverage | http://localhost/beverage/add | POST | Add beverage in Machine | NONE | Beverage Object |
-| Update Beverage | http://localhost/beverage/update | PUT | Update existing beverage from Machine | NONE | Beverage Object |
-| Delete Beverage | http://localhost/beverage/delete/{beverageID} | DELETE | Delete existing beverage from Machine | BeverageID | Boolean |
-| Show Single Beverage | http://localhost/beverage/find/{BeverageId} | GET | Details of a Requested Bevarage from the System | BeverageID | Beverage Object |
-| Show All Beverages | http://localhost/beverage/ | GET | Show all beverages  | NONE | List of Beverages  |
-| Check Availablity of a beverage | http://localhost/beverage/available/{BeverageId} | GET | Retrive all beverages available in the machine | BeverageId | Boolean |
-| Check All Beverages | http://localhost/available | GET | Check all beverages available in the machine | NONE | List of Beverages |
-| Order Beverage | http://localhost/beverage/order/{beverageId} | GET | Orders a beverage with valid beverageId | beverageId | Ingredients Object |
+| Add Beverage | http://localhost:8080/beverage/add | POST | Add beverage in Machine | NONE | Beverage Object |
+| Update Beverage | http://localhost:8080/beverage/update | PUT | Update existing beverage from Machine | NONE | Beverage Object |
+| Delete Beverage | http://localhost:8080/beverage/delete/{beverageID} | DELETE | Delete existing beverage from Machine | BeverageID | Boolean |
+| Show Single Beverage | http://localhost:8080/beverage/find/{BeverageId} | GET | Details of a Requested Bevarage from the System | BeverageID | Beverage Object |
+| Show All Beverages | http://localhost:8080/beverage/ | GET | Show all beverages  | NONE | List of Beverages  |
+| Check Availablity of a beverage | http://localhost:8080/beverage/available/{BeverageId} | GET | Retrive all beverages available in the machine | BeverageId | Boolean |
+| Check All Beverages | http://localhost:8080/available | GET | Check all beverages available in the machine | NONE | List of Beverages |
+| Order Beverage | http://localhost:8080/beverage/order/{beverageId} | GET | Orders a beverage with valid beverageId | beverageId | Ingredients Object |
 
 ### Inventory
 | Name | URL | Method | Purpose | Parameter | Result |
 |---|---|---|---|---|---|
-| Add Inventory | http://localhost/inventory/add | POST | Add inventory in Machine | NONE | Inventory Object |
-| Update Inventory | http://localhost/inventory/update | PUT | Update existing inventory from the system | NONE | Inventory Object |
-| Delete Inventory | http://localhost/inventory/delete/{inventoryID} | DELETE | Delete existing inventory from Machine | inventoryID | Boolean |
-| Show Single Inventory | http://localhost/inventory/find/{inventoryId} | GET | Details of a Requested Inventory from the System | inventoryID | Inventory Object |
-| Show All Inventories | http://localhost/inventory/ | GET | Show all Inventories  | NONE | List of Inventories |
+| Add Inventory | http://localhost:8080/inventory/add | POST | Add inventory in Machine | NONE | Inventory Object |
+| Update Inventory | http://localhost:8080/inventory/update | PUT | Update existing inventory from the system | NONE | Inventory Object |
+| Delete Inventory | http://localhost:8080/inventory/delete/{inventoryID} | DELETE | Delete existing inventory from Machine | inventoryID | Boolean |
+| Show Single Inventory | http://localhost:8080/inventory/find/{inventoryId} | GET | Details of a Requested Inventory from the System | inventoryID | Inventory Object |
+| Show All Inventories | http://localhost:8080/inventory/ | GET | Show all Inventories  | NONE | List of Inventories |
 | Increase Inventory Quantity | http://localhost:8080/inventory/increaseQuantity/{inventoryId}/{quantity} | GET | Increase the quantity of an existing inventory from the system | inventoryID, quantity | Inventory Object |
 | Check for Empty Inventory | http://localhost:8080/inventory/checkEmpty/{inventoryId} | GET | Check if requested inventories is empty or not  | inventoryId | Boolean |
 | Check Inventory with given quantity | http://localhost:8080/inventory/checkQuantity/{inventoryId}/{quantity} | GET | check whether inventory possess given quantity | inventoryID, quantity | Boolean |
@@ -98,11 +98,11 @@ Alternatively you can use the Spring Boot Maven plugin like so:
 ### Ingredients
 | Name | URL | Method | Purpose | Parameter | Result |
 |---|---|---|---|---|---|
-| Add Ingredient | http://localhost/ingredients/add | POST | Add Ingredient for particular beverage | NONE | Ingredient Object |
-| Update Ingredient | http://localhost/ingredients/update | PUT | Update Ingredient of particular beverage | NONE | Ingredient Object |
-| Delete Ingredient | http://localhost/ingredients/delete/{ingredientID} | DELETE | Delete existing Ingredient | ingredientID | Boolean |
-| Show Single Ingredient | http://localhost/ingredients/find/{ingredientId} | GET | Details of a Requested Ingredient from the System | ingredientID | Ingredient Object |
-| Show All Ingredients | http://localhost/ingredients/findall | GET | Show all Ingredients used by all beverages  | NONE | List of Ingredients Object |
+| Add Ingredient | http://localhost:8080/ingredients/add | POST | Add Ingredient for particular beverage | NONE | Ingredient Object |
+| Update Ingredient | http://localhost:8080/ingredients/update | PUT | Update Ingredient of particular beverage | NONE | Ingredient Object |
+| Delete Ingredient | http://localhost:8080/ingredients/delete/{ingredientID} | DELETE | Delete existing Ingredient | ingredientID | Boolean |
+| Show Single Ingredient | http://localhost:8080/ingredients/find/{ingredientId} | GET | Details of a Requested Ingredient from the System | ingredientID | Ingredient Object |
+| Show All Ingredients | http://localhost:8080/ingredients/findall | GET | Show all Ingredients used by all beverages  | NONE | List of Ingredients Object |
 
 ## Files and Directories
 * API
